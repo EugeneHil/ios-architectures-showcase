@@ -59,11 +59,15 @@ extension TCA {
 
                 case .saveTapped:
                     guard state.isSaveEnabled else { return .none }
-                    var todo = state.existing ?? Todo(title: "")
-                    todo.title = state.title.trimmingCharacters(in: .whitespacesAndNewlines)
-                    todo.notes = state.notes.trimmingCharacters(in: .whitespacesAndNewlines)
-                    todo.priority = state.priority
-                    return .run { send in await send(.delegate(.savedTodo(todo))) }
+                    var draft = state.existing ?? Todo(title: "")
+                    draft.title = state.title.trimmingCharacters(in: .whitespacesAndNewlines)
+                    draft.notes = state.notes.trimmingCharacters(in: .whitespacesAndNewlines)
+                    draft.priority = state.priority
+                    let todo = draft
+                    return .run { [todo] send in await send(.delegate(.savedTodo(todo))) }
+
+                case .delegate:
+                    return .none
                 }
             }
         }

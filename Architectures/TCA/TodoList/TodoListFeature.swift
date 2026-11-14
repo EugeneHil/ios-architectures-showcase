@@ -85,10 +85,11 @@ extension TCA {
 
                 case .toggleDoneTapped(let id):
                     guard let index = state.todos.firstIndex(where: { $0.id == id }) else { return .none }
-                    var todo = state.todos[index]
-                    todo.isDone.toggle()
+                    var updated = state.todos[index]
+                    updated.isDone.toggle()
+                    let todo = updated
                     let isUpdate = state.todos.contains(where: { $0.id == todo.id })
-                    return .run { [repository] send in
+                    return .run { [repository, todo] send in
                         do {
                             try await isUpdate ? repository.update(todo) : repository.add(todo)
                             await send(.todosLoaded(try await repository.fetchAll()))
