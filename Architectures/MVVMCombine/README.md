@@ -12,7 +12,6 @@ inputs and outputs with Combine and stays free of presentation logic.
 - `TodoList/TodoListViewController.swift` — binds via `cancellables`; diffable table; swipes and taps forward intents
 - `AddEditTodo/AddEditTodoViewModel.swift` — pure form state + validation, emits the finished `Todo`
 - `AddEditTodo/AddEditTodoViewController.swift` — form UI; one binding (`isSaveEnabled`)
-- `../Tests/MVVMCombineTests.swift` — view model tests with a mocked repository
 
 ## Design decisions to notice
 
@@ -21,4 +20,4 @@ inputs and outputs with Combine and stays free of presentation logic.
 - **Formatting lives in the view model**: `TodoRow` (title/subtitle/isDone) and `emptyMessage` are ready to render — the VC never builds display strings
 - **Navigation stays in the VC** (via the `events` publisher) — plain MVVM's honest weak spot; the Coordinator sample exists to fix exactly this
 - **Persistence ownership**: the form VM only validates and emits a `Todo`; `TodoListViewModel` persists it — one owner for the list's data flow
-- **Testing**: no view controller involved, just a mocked repository and assertions on published state
+- **Testability**: view models import no UIKit — they can be exercised with just a mocked repository (a favourite interview question about MVVM)

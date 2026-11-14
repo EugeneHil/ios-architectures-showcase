@@ -52,7 +52,7 @@ iOS-Architectures-Showcase/
 ├── README.md
 ├── Shared/            # Todo model, async repository, module plumbing — used by every sample
 ├── ShowcaseApp/       # thin app: architecture menu + UIKit bridge
-├── Architectures/
+└── Architectures/
     ├── MVC/           # one folder = one architecture = one namespace (`MVC.`)
     ├── MVP/
     ├── MVVMCombine/
@@ -61,7 +61,6 @@ iOS-Architectures-Showcase/
     ├── CleanSwift/
     ├── MVI/
     └── TCA/
-└── Tests/             # unit tests for the samples (add a test target — step 7)
 ```
 
 There is a single app target: every sample's types live inside a caseless enum named
@@ -83,9 +82,6 @@ generation in this repo.
    *Create groups* and re-drag new folders) → make sure the target
    **ArchitecturesShowcase** is checked
 6. Run ▶ — you get the architecture menu; each row opens the same todo app built with that pattern
-7. Optional, to run the unit tests: **File → New → Target → Unit Testing Bundle**, name it
-   `ArchitecturesShowcaseTests`, then drag the `Tests` folder in with the **test target**
-   checked (not the app target)
 
 When the TCA sample is implemented, add the library via
 **File → Add Package Dependencies** → `https://github.com/pointfreeco/swift-composable-architecture`.
@@ -100,5 +96,4 @@ When the TCA sample is implemented, add the library via
 - [ ] Clean Swift / VIP (UIKit)
 - [ ] MVI — hand-rolled unidirectional store (SwiftUI)
 - [ ] TCA (SwiftUI)
-- [ ] Unit tests for at least MVVM, VIPER, MVI and TCA samples
 - [ ] Final comparison pass: fill this README with hands-on impressions
