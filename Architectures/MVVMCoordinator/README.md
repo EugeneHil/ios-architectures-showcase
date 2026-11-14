@@ -1,19 +1,25 @@
 # MVVM + Coordinator
 
-**Status:** planned
+**Status:** ✅ implemented
 
 Same view models as plain MVVM, but coordinators own navigation and module wiring:
 view models stop knowing which screens exist.
 
-## Planned structure
+## Structure
 
 - `MVVMCoordinatorModule.swift` — namespace, metadata, module entry
-- `Coordinators/AppCoordinator.swift` — root flow
-- `Coordinators/TodoListCoordinator.swift`, `Coordinators/AddEditTodoCoordinator.swift`
-- View models / view controllers (no navigation code inside)
+- `Coordinators/Coordinator.swift` — the flow-owner protocol
+- `Coordinators/TodoListCoordinator.swift` — builds VM + VC, routes to add/edit, feeds results back
+- `Coordinators/AddEditTodoCoordinator.swift` — child flow: presents the form, dismisses, reports back
+- `TodoList/TodoListViewModel.swift` — pure data state machine, **no navigation output**
+- `TodoList/TodoListViewController.swift` — renders state; reports user actions via closures set by the coordinator
+- `AddEditTodo/…` — form VM/VC, same as the plain MVVM sample (coordinators change who presents, not the form)
 
-## What to notice
+## What to notice (vs the plain MVVM sample)
 
-- Navigation decisions live in coordinators, not in view models or VCs
-- How a coordinator builds and wires a VC + VM pair
-- What deep linking and flow reuse look like compared to ad hoc pushes
+- The view model has no `events` publisher — navigation decisions left the VM entirely
+- The VC no longer builds or presents the form; it only reports taps through coordinator-owned closures
+- Child coordinator lifecycle: held in the parent's `childCoordinators`, removed on finish
+- Lifetime: the screen keeps the coordinator alive via its closures; in a real app the scene
+  delegate or a parent coordinator owns it — be ready to explain this in an interview
+- Interview story: coordinators make flows reusable and deep-linkable, and remove UIKit knowledge from view models

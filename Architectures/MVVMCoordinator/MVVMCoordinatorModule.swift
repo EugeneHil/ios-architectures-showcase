@@ -5,10 +5,12 @@ enum MVVMCoordinator: ArchitectureModule {
     static let meta = ArchitectureMeta(
         name: "MVVM + Coordinator",
         summary: "MVVM plus coordinator objects that own navigation and module wiring, keeping view models screen-agnostic.",
-        ui: .uikit
+        ui: .uikit,
+        status: .done
     )
 
     static func makeRoot(repository: any TodoRepository) -> UIViewController {
-        PlaceholderSceneViewController(meta: meta)
+        let coordinator = TodoListCoordinator(repository: repository)
+        return coordinator.start()
     }
 }
