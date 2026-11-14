@@ -30,7 +30,7 @@ Each architecture implements the same todo app:
 | 5 | [VIPER](Architectures/VIPER) | UIKit | ✅ done |
 | 6 | [Clean Swift (VIP)](Architectures/CleanSwift) | UIKit | ✅ done |
 | 7 | [MVI](Architectures/MVI) | SwiftUI | ✅ done |
-| 8 | [TCA](Architectures/TCA) | SwiftUI | ⚪️ planned |
+| 8 | [TCA](Architectures/TCA) | SwiftUI | ✅ done |
 
 ## Cheat sheet (interview notes)
 
@@ -44,6 +44,33 @@ Each architecture implements the same todo app:
 | Clean Swift (VIP) | view → interactor → presenter cycle | high | very good | configurator + router | Clean Architecture, iOS-flavoured |
 | MVI | single immutable state, one-way intents | medium (hand-rolled store) | excellent (pure reducer) | central, state-driven | predictable state, SwiftUI |
 | TCA | composable reducers + effects | low (library-provided) | excellent (tested dependencies) | library navigation tools | production SwiftUI apps |
+
+## Hands-on numbers
+
+All samples implement the identical feature set against the same `Shared` core,
+written in the same style — the only variable is the architecture:
+
+| Sample | Swift files | Lines of code |
+|--------|-------------|---------------|
+| MVC | 3 | 391 |
+| MVP | 7 | 584 |
+| MVVM + Combine | 5 | 563 |
+| MVVM + Coordinator | 8 | 629 |
+| VIPER | 13 | 756 |
+| Clean Swift (VIP) | 14 | 868 |
+| MVI (hand-rolled) | 6 | 442 |
+| TCA | 5 | 415 (+ the library itself) |
+
+## Hands-on impressions (short)
+
+- **MVC** — fastest to write, zero ceremony; every responsibility lives in one file, and it shows after ~300 lines.
+- **MVP** — extracting the presenter is cheap; the two-way protocols and the render-what-changed dance in the form are the annoying part.
+- **MVVM + Combine** — best effort/benefit for UIKit: bindings remove glue code, view models test trivially. Navigation inside the view controller is the weak spot.
+- **MVVM + Coordinator** — coordinators fix exactly that weak spot, at the price of one more moving part per flow.
+- **VIPER** — the interactor/presenter split feels right; the protocol mesh and module-I/O ceremony double the file count.
+- **Clean Swift** — the same strictness as VIPER with worse ergonomics: every use case is a triple of Request/Response/ViewModel types.
+- **MVI** — the smallest SwiftUI solution with a real architecture: one state struct, one reducer, glue bindings. Effects and testing infrastructure you build yourself.
+- **TCA** — MVI with the missing 90% (effects, dependencies, testing, navigation) provided by the library; the shortest sample for how much it does.
 
 ## Repository layout
 
@@ -83,8 +110,10 @@ generation in this repo.
    **ArchitecturesShowcase** is checked
 6. Run ▶ — you get the architecture menu; each row opens the same todo app built with that pattern
 
-When the TCA sample is implemented, add the library via
-**File → Add Package Dependencies** → `https://github.com/pointfreeco/swift-composable-architecture`.
+All samples except TCA build out of the box. **TCA requires one extra step** — add the
+library via **File → Add Package Dependencies** →
+`https://github.com/pointfreeco/swift-composable-architecture` — the app target does not
+build until this dependency is added.
 
 ## Roadmap
 
@@ -95,5 +124,5 @@ When the TCA sample is implemented, add the library via
 - [x] VIPER (UIKit)
 - [x] Clean Swift / VIP (UIKit)
 - [x] MVI — hand-rolled unidirectional store (SwiftUI)
-- [ ] TCA (SwiftUI)
-- [ ] Final comparison pass: fill this README with hands-on impressions
+- [x] TCA (SwiftUI)
+- [x] Final comparison pass: fill this README with hands-on impressions
