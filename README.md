@@ -25,7 +25,7 @@ Each architecture implements the same todo app:
 |---|--------|----|--------|
 | 1 | [MVC](Architectures/MVC) | UIKit | ⚪️ planned |
 | 2 | [MVP](Architectures/MVP) | UIKit | ⚪️ planned |
-| 3 | [MVVM + Combine](Architectures/MVVMCombine) | UIKit | ⚪️ planned |
+| 3 | [MVVM + Combine](Architectures/MVVMCombine) | UIKit | ✅ done |
 | 4 | [MVVM + Coordinator](Architectures/MVVMCoordinator) | UIKit | ⚪️ planned |
 | 5 | [VIPER](Architectures/VIPER) | UIKit | ⚪️ planned |
 | 6 | [Clean Swift (VIP)](Architectures/CleanSwift) | UIKit | ⚪️ planned |
@@ -52,7 +52,7 @@ iOS-Architectures-Showcase/
 ├── README.md
 ├── Shared/            # Todo model, async repository, module plumbing — used by every sample
 ├── ShowcaseApp/       # thin app: architecture menu + UIKit bridge
-└── Architectures/
+├── Architectures/
     ├── MVC/           # one folder = one architecture = one namespace (`MVC.`)
     ├── MVP/
     ├── MVVMCombine/
@@ -61,6 +61,7 @@ iOS-Architectures-Showcase/
     ├── CleanSwift/
     ├── MVI/
     └── TCA/
+└── Tests/             # unit tests for the samples (add a test target — step 7)
 ```
 
 There is a single app target: every sample's types live inside a caseless enum named
@@ -77,9 +78,14 @@ generation in this repo.
 3. Save **into the repository root** (`iOS-Architectures-Showcase/`); uncheck *Create Git repository*
 4. In the project navigator delete the generated `ContentView.swift` and `ArchitecturesShowcaseApp.swift` (Move to Trash)
 5. Drag the folders `Shared`, `ShowcaseApp` and `Architectures` from Finder into the
-   `ArchitecturesShowcase` project group → choose **Create groups** → make sure the
-   target **ArchitecturesShowcase** is checked
+   `ArchitecturesShowcase` project group → choose **Create folder references** so that
+   files added later are picked up automatically (on Xcode 15 or older choose
+   *Create groups* and re-drag new folders) → make sure the target
+   **ArchitecturesShowcase** is checked
 6. Run ▶ — you get the architecture menu; each row opens the same todo app built with that pattern
+7. Optional, to run the unit tests: **File → New → Target → Unit Testing Bundle**, name it
+   `ArchitecturesShowcaseTests`, then drag the `Tests` folder in with the **test target**
+   checked (not the app target)
 
 When the TCA sample is implemented, add the library via
 **File → Add Package Dependencies** → `https://github.com/pointfreeco/swift-composable-architecture`.
@@ -88,7 +94,7 @@ When the TCA sample is implemented, add the library via
 
 - [ ] MVC (UIKit)
 - [ ] MVP (UIKit)
-- [ ] MVVM + Combine (UIKit)
+- [x] MVVM + Combine (UIKit)
 - [ ] MVVM + Coordinator (UIKit)
 - [ ] VIPER (UIKit)
 - [ ] Clean Swift / VIP (UIKit)

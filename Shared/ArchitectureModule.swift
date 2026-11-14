@@ -36,6 +36,8 @@ struct ArchitectureMeta {
 
 /// Contract every architecture sample exposes to the showcase app.
 /// `makeRoot` returns the sample's initial screen wired with the shared repository.
+/// MainActor by nature: building a UIKit view hierarchy happens on the main thread.
+@MainActor
 protocol ArchitectureModule {
     static var meta: ArchitectureMeta { get }
     static func makeRoot(repository: any TodoRepository) -> UIViewController

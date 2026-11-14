@@ -2,7 +2,7 @@ import Foundation
 
 /// The single domain model shared by every architecture sample.
 struct Todo: Identifiable, Codable, Equatable {
-    enum Priority: Int, Codable, Comparable {
+    enum Priority: Int, Codable, Comparable, CaseIterable {
         case low = 0
         case medium = 1
         case high = 2
