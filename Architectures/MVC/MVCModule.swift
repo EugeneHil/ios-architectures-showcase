@@ -8,10 +8,11 @@ enum MVC: ArchitectureModule {
     static let meta = ArchitectureMeta(
         name: "MVC",
         summary: "Apple's take on MVC: the view controller owns the view, input handling and most presentation logic — the baseline every other pattern in this repo is compared against.",
-        ui: .uikit
+        ui: .uikit,
+        status: .done
     )
 
     static func makeRoot(repository: any TodoRepository) -> UIViewController {
-        PlaceholderSceneViewController(meta: meta)
+        TodoListViewController(repository: repository)
     }
 }

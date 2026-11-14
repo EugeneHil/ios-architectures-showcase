@@ -23,7 +23,7 @@ Each architecture implements the same todo app:
 
 | # | Sample | UI | Status |
 |---|--------|----|--------|
-| 1 | [MVC](Architectures/MVC) | UIKit | ⚪️ planned |
+| 1 | [MVC](Architectures/MVC) | UIKit | ✅ done |
 | 2 | [MVP](Architectures/MVP) | UIKit | ⚪️ planned |
 | 3 | [MVVM + Combine](Architectures/MVVMCombine) | UIKit | ✅ done |
 | 4 | [MVVM + Coordinator](Architectures/MVVMCoordinator) | UIKit | ✅ done |
@@ -88,7 +88,7 @@ When the TCA sample is implemented, add the library via
 
 ## Roadmap
 
-- [ ] MVC (UIKit)
+- [x] MVC (UIKit)
 - [ ] MVP (UIKit)
 - [x] MVVM + Combine (UIKit)
 - [x] MVVM + Coordinator (UIKit)
