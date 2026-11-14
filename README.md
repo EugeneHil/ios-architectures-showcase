@@ -27,7 +27,7 @@ Each architecture implements the same todo app:
 | 2 | [MVP](Architectures/MVP) | UIKit | ✅ done |
 | 3 | [MVVM + Combine](Architectures/MVVMCombine) | UIKit | ✅ done |
 | 4 | [MVVM + Coordinator](Architectures/MVVMCoordinator) | UIKit | ✅ done |
-| 5 | [VIPER](Architectures/VIPER) | UIKit | ⚪️ planned |
+| 5 | [VIPER](Architectures/VIPER) | UIKit | ✅ done |
 | 6 | [Clean Swift (VIP)](Architectures/CleanSwift) | UIKit | ⚪️ planned |
 | 7 | [MVI](Architectures/MVI) | SwiftUI | ⚪️ planned |
 | 8 | [TCA](Architectures/TCA) | SwiftUI | ⚪️ planned |
@@ -92,7 +92,7 @@ When the TCA sample is implemented, add the library via
 - [x] MVP (UIKit)
 - [x] MVVM + Combine (UIKit)
 - [x] MVVM + Coordinator (UIKit)
-- [ ] VIPER (UIKit)
+- [x] VIPER (UIKit)
 - [ ] Clean Swift / VIP (UIKit)
 - [ ] MVI — hand-rolled unidirectional store (SwiftUI)
 - [ ] TCA (SwiftUI)
