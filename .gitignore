@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Xcode user state
+xcuserdata/
+*.xcuserstate
+
+# Build artifacts
+DerivedData/
+build/
+
+# Swift Package Manager (used later for the TCA sample)
+.build/
